@@ -1,0 +1,11 @@
+[package]
+name = "groppy"
+version = "1.0.0"
+edition = "2024"
+
+[dependencies]
+git2 = { version = "0.20", features = ["ssh", "https"] }
+clap = { version = "4.5", features = ["derive"] }
+crossbeam = "0.8"
+anyhow = "1.0"
+indicatif = "0.17"
