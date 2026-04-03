@@ -1,0 +1,14 @@
+[package]
+name = "groppy"
+version = "1.2.0"
+edition = "2024"
+
+[dependencies]
+gix = { version = "0.80", features = ["blocking-network-client", "blocking-http-transport-reqwest-rust-tls", "status", "worktree-mutation"] }
+clap = { version = "4", features = ["derive"] }
+crossterm = "0.29"
+rayon = "1"
+anyhow = "1"
+
+[dev-dependencies]
+tempfile = "3"
