@@ -37,7 +37,7 @@ cargo clippy
 
 | Dependency | Pin Strategy | Notes |
 |-----------|--------------|-------|
-| `gix` | minor (`0.80`) | gitoxide — moves fast, breaking changes between minors. Features: `blocking-network-client`, `blocking-http-transport-reqwest-rust-tls`, `status`, `worktree-mutation` |
+| `gix` | minor (`0.81`) | gitoxide — moves fast, breaking changes between minors. Features: `blocking-network-client`, `blocking-http-transport-reqwest-rust-tls`, `status`, `worktree-mutation` |
 | `crossterm` | minor (`0.29`) | Terminal I/O — pre-1.0, breaking changes between minors |
 | `clap` | major (`4`) | CLI parser — semver-stable |
 | `rayon` | major (`1`) | Parallelism — semver-stable |
@@ -45,16 +45,26 @@ cargo clippy
 
 ### Update Workflow
 
+**Patch bumps** (all pinned crates, within locked ranges):
+
 ```bash
 cargo update
 cargo test
 cargo clippy
 ```
 
+**Minor bump for a pinned crate** (e.g. `gix`):
+
+1. Check `cargo search <crate>` for latest version.
+2. Read crate-specific CHANGELOG before bumping.
+   - `gix` changelog: `gix/CHANGELOG.md` in the gitoxide repo — **not** the root `CHANGELOG.md`, which is for the `gitoxide` CLI binary.
+3. Edit `Cargo.toml` exact pin (e.g. `=0.80.0` → `=0.81.0`).
+4. Run `cargo build && cargo test && cargo clippy`.
+
 ### Pin Strategy
 
 - **Major-version pins** (`"4"`, `"1"`): semver-stable crates. `cargo update` pulls latest compatible.
-- **Minor-version pins** (`"0.80"`, `"0.29"`): pre-1.0 crates where minors contain breaking changes. Bump manually after reviewing changelogs.
+- **Minor-version pins** (`"0.81"`, `"0.29"`): pre-1.0 crates where minors contain breaking changes. Bump manually after reviewing changelogs.
 
 ## Versioning
 
